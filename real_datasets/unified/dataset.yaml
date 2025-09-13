@@ -1,0 +1,12 @@
+names:
+  0: car
+  1: clean
+  2: dent
+  3: dirt
+  4: rust
+  5: scratch
+nc: 6
+path: /Users/bekzat/projects/AIinDrive/real_datasets/unified
+test: test
+train: train
+val: val

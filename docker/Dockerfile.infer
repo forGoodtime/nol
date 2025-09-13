@@ -1,0 +1,40 @@
+# Dockerfile для инференса (CPU версия, легкий контейнер)
+FROM python:3.9-slim
+
+# Устанавливаем системные зависимости
+RUN apt-get update && apt-get install -y \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgomp1 \
+    libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Устанавливаем только необходимые для инференса зависимости
+WORKDIR /app
+
+# Создаем requirements для инференса (только нужные пакеты)
+COPY docker/requirements-inference.txt .
+RUN pip install --no-cache-dir -r requirements-inference.txt
+
+# Копируем только необходимые для инференса файлы
+COPY src/inference/ src/inference/
+COPY src/models/ src/models/
+COPY src/utils/ src/utils/
+COPY src/datasets/augmentation.py src/datasets/augmentation.py
+COPY src/datasets/__init__.py src/datasets/__init__.py
+COPY src/__init__.py src/__init__.py
+
+# Создаем папки для моделей и результатов
+RUN mkdir -p models outputs
+
+# Устанавливаем переменные окружения
+ENV PYTHONPATH=/app
+ENV DEVICE=cpu
+
+# Порт для FastAPI (если используется)
+EXPOSE 8000
+
+# Команда по умолчанию
+CMD ["python", "src/inference/infer.py", "--help"]

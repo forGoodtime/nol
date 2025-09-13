@@ -1,0 +1,153 @@
+# Базовая конфигурация для обучения модели
+
+# Общие настройки
+seed: 42
+device: "cuda"  # cuda или cpu
+num_workers: 4
+
+# Данные
+data:
+  root_dir: "data/"
+  image_size: [640, 640]
+  batch_size: 16
+  val_batch_size: 32
+  
+  # Разделение данных
+  train_split: "data/splits/train.txt"
+  val_split: "data/splits/val.txt"
+  test_split: "data/splits/test.txt"
+  
+  # Аннотации
+  coco_annotations: "data/annotations/coco/instances.json"
+  masks_dir: "data/annotations/masks/"
+
+# Модель
+model:
+  backbone: "resnet50"  # resnet18/50, efficientnet-b0/b3, mobilenet_v3
+  pretrained: true
+  num_classes: 4  # 0-3 степени повреждения
+  
+  # Segmentation
+  segmentation:
+    enabled: true
+    architecture: "unet"  # unet, maskrcnn, yolov8-seg
+    
+  # Anomaly detection
+  anomaly:
+    enabled: true
+    method: "patchcore"  # patchcore, padim
+    memory_bank_size: 1000
+
+# Обучение
+training:
+  epochs: 100
+  lr: 1e-3
+  weight_decay: 1e-4
+  
+  # Оптимизатор
+  optimizer: "adam"  # adam, sgd, adamw
+  
+  # Scheduler
+  scheduler:
+    type: "cosine"  # cosine, step, plateau
+    patience: 10
+    
+  # Early stopping
+  early_stopping:
+    patience: 15
+    monitor: "val_loss"
+    mode: "min"
+
+# Loss функции
+loss:
+  # Основная классификация
+  classification:
+    type: "cross_entropy"
+    class_weights: [1.0, 1.2, 1.5, 2.0]  # веса для классов 0,1,2,3
+    
+  # Сегментация
+  segmentation:
+    type: "dice_bce"
+    dice_weight: 0.5
+    bce_weight: 0.5
+    
+  # Кнут и пряник
+  knout_pryanik:
+    enabled: true
+    reward_factor: 0.1    # пряник - снижение loss при правильном предсказании
+    penalty_factor: 0.3   # кнут - увеличение loss при ошибке
+    adaptive: true        # адаптивные веса
+    
+  # Комбинация loss-ов
+  multi_task:
+    classification_weight: 1.0
+    segmentation_weight: 0.8
+    anomaly_weight: 0.5
+
+# Аугментации
+augmentation:
+  # Геометрические
+  horizontal_flip: 0.5
+  rotation: 15
+  scale: [0.8, 1.2]
+  
+  # Цвет и освещение (важно для теней/бликов)
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.2
+  hue: 0.1
+  
+  # Специальные для автомобилей
+  clahe: true           # контрастно-ограниченная адаптивная гистограммная эквализация
+  gaussian_blur: 0.3
+  random_shadow: 0.3    # искусственные тени
+  random_brightness: 0.4
+
+# Метрики
+metrics:
+  # Основные
+  - "accuracy"
+  - "precision"
+  - "recall" 
+  - "f1"
+  
+  # По классам
+  - "per_class_precision"
+  - "per_class_recall"
+  
+  # Сегментация
+  - "iou"
+  - "dice"
+  
+  # Калибровка
+  - "ece"  # Expected Calibration Error
+  - "brier_score"
+
+# Валидация
+validation:
+  frequency: 1  # каждую эпоху
+  save_best: true
+  save_last: true
+  
+  # Специальные метрики для критичных классов
+  critical_classes: [3]  # серьезные повреждения
+  critical_recall_threshold: 0.95
+
+# Логирование
+logging:
+  use_wandb: true
+  project_name: "aiindrive-damage-detection"
+  log_images: true
+  log_frequency: 100  # шагов
+  
+# Чекпоинты
+checkpoint:
+  save_dir: "experiments/"
+  save_frequency: 5  # эпох
+  max_to_keep: 3
+
+# Инференс
+inference:
+  confidence_threshold: 0.5
+  nms_threshold: 0.4
+  max_detections: 100

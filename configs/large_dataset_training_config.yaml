@@ -1,0 +1,61 @@
+augmentation_config:
+  brightness: 0.4
+  contrast: 0.4
+  copy_paste: 0.3
+  degrees: 10.0
+  fliplr: 0.5
+  flipud: 0.0
+  horizontal_flip: 0.5
+  hue: 0.015
+  mixup: 0.15
+  mosaic: 1.0
+  perspective: 0.0003
+  rotation: 15
+  saturation: 0.7
+  scale: 0.5
+  shear: 2.0
+  translate: 0.1
+  vertical_flip: 0.1
+data_config:
+  cache_images: false
+  dataset_yaml: /Users/bekzat/projects/AIinDrive/data/synthetic_car_damage/dataset.yaml
+  num_workers: 8
+  pin_memory: true
+logging_config:
+  log_interval: 50
+  log_level: INFO
+  save_checkpoints: true
+  save_period: 10
+  tensorboard_logging: true
+  wandb_logging: true
+loss_config:
+  box_loss_gain: 7.5
+  cls_loss_gain: 0.5
+  focal_loss_alpha: 0.25
+  focal_loss_gamma: 2.0
+  label_smoothing: 0.1
+  obj_loss_gain: 1.0
+  use_knout_pryanik: true
+model_config:
+  architecture: yolov8s
+  freeze_backbone: false
+  freeze_epochs: 0
+  input_size: 640
+  num_classes: 6
+  pretrained: true
+training_config:
+  batch_size: 16
+  cos_lr: true
+  early_stopping: true
+  epochs: 200
+  learning_rate: 0.01
+  patience: 30
+  save_best_only: true
+  warmup_epochs: 5
+  weight_decay: 0.0005
+validation_config:
+  conf_threshold: 0.001
+  iou_threshold: 0.6
+  max_det: 300
+  save_predictions: true
+  visualize_results: true

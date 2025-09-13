@@ -1,0 +1,119 @@
+{
+  "total_images": 7,
+  "valid_images": 7,
+  "missing_images": [],
+  "total_annotations": 8,
+  "valid_annotations": 8,
+  "category_distribution": {
+    "0": {
+      "name": "no_damage",
+      "count": 0
+    },
+    "1": {
+      "name": "rust",
+      "count": 3
+    },
+    "2": {
+      "name": "dent",
+      "count": 1
+    },
+    "3": {
+      "name": "scratch",
+      "count": 2
+    },
+    "4": {
+      "name": "severe_damage",
+      "count": 1
+    },
+    "5": {
+      "name": "missing_part",
+      "count": 1
+    }
+  },
+  "images_info": {
+    "1": {
+      "path": "/Users/bekzat/projects/AIinDrive/data/curated/prod_case_001_no_damage.jpg",
+      "actual_size": [
+        800,
+        600
+      ],
+      "expected_size": [
+        800,
+        600
+      ],
+      "valid": true
+    },
+    "2": {
+      "path": "/Users/bekzat/projects/AIinDrive/data/curated/prod_case_002_rust.jpg",
+      "actual_size": [
+        800,
+        600
+      ],
+      "expected_size": [
+        800,
+        600
+      ],
+      "valid": true
+    },
+    "3": {
+      "path": "/Users/bekzat/projects/AIinDrive/data/curated/prod_case_003_dent.jpg",
+      "actual_size": [
+        800,
+        600
+      ],
+      "expected_size": [
+        800,
+        600
+      ],
+      "valid": true
+    },
+    "4": {
+      "path": "/Users/bekzat/projects/AIinDrive/data/curated/prod_case_004_severe.jpg",
+      "actual_size": [
+        800,
+        600
+      ],
+      "expected_size": [
+        800,
+        600
+      ],
+      "valid": true
+    },
+    "5": {
+      "path": "/Users/bekzat/projects/AIinDrive/data/curated/val_case_001_scratch.jpg",
+      "actual_size": [
+        800,
+        600
+      ],
+      "expected_size": [
+        800,
+        600
+      ],
+      "valid": true
+    },
+    "6": {
+      "path": "/Users/bekzat/projects/AIinDrive/data/curated/val_case_002_rust.jpg",
+      "actual_size": [
+        800,
+        600
+      ],
+      "expected_size": [
+        800,
+        600
+      ],
+      "valid": true
+    },
+    "7": {
+      "path": "/Users/bekzat/projects/AIinDrive/data/curated/val_case_003_no_damage.jpg",
+      "actual_size": [
+        800,
+        600
+      ],
+      "expected_size": [
+        800,
+        600
+      ],
+      "valid": true
+    }
+  }
+}

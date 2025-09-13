@@ -1,0 +1,28 @@
+# Конфигурация для малого датасета (быстрое тестирование)
+
+# Наследуем базовую конфигурацию
+defaults:
+  - default
+
+# Переопределяем параметры для малого датасета
+data:
+  batch_size: 8
+  val_batch_size: 16
+
+model:
+  backbone: "resnet18"  # более легкий backbone
+
+training:
+  epochs: 20
+  lr: 2e-3
+  
+loss:
+  knout_pryanik:
+    penalty_factor: 0.5  # больше кнута для быстрого обучения
+
+# Более агрессивные аугментации
+augmentation:
+  horizontal_flip: 0.7
+  rotation: 20
+  random_shadow: 0.5
+  random_brightness: 0.6

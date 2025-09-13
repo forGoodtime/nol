@@ -1,0 +1,39 @@
+name: aiindrive
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pytorch>=1.12.0
+  - torchvision>=0.13.0
+  - torchaudio>=0.12.0
+  - cudatoolkit=11.6  # или 11.7, в зависимости от вашей системы
+  - pip
+  - jupyter
+  - matplotlib
+  - numpy
+  - pandas
+  - scikit-learn
+  - opencv
+  - pillow
+  - pyyaml
+  - tqdm
+  - pip:
+    - ultralytics>=8.0.0
+    - anomalib>=0.6.0
+    - albumentations>=1.3.0
+    - pycocotools>=2.0.6
+    - timm>=0.6.0
+    - torchmetrics>=0.11.0
+    - pytorch-lightning>=1.9.0
+    - wandb>=0.13.0
+    - fastapi>=0.95.0
+    - uvicorn>=0.20.0
+    - hydra-core>=1.3.0
+    - omegaconf>=2.3.0
+    - seaborn>=0.12.0
+    - plotly>=5.11.0
+    - loguru>=0.6.0
+    - rich>=12.0.0
+    - gradio>=3.13.0

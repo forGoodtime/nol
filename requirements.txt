@@ -1,0 +1,77 @@
+# core - совместимые версии для Python 3.13
+torch>=2.0.0            # последние версии поддерживают Python 3.13
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# detection/segmentation
+ultralytics>=8.3.0      # последние версии поддерживают Python 3.13
+# detectron2            # пропускаем - нет поддержки Python 3.13, будем использовать альтернативы
+
+# anomaly detection
+# anomalib>=0.6.0       # пропускаем временно, реализуем собственные алгоритмы
+
+# utils and preprocessing - совместимые версии
+albumentations>=1.3.0
+opencv-python>=4.7.0
+pillow>=10.0.0          # обновлена версия для Python 3.13
+scikit-image>=0.20.0    # обновлена версия
+scikit-learn>=1.3.0     # обновлена версия
+numpy>=1.24.0           # совместима с Python 3.13
+pandas>=2.0.0           # обновлена версия
+# pycocotools>=2.0.6    # может иметь проблемы с Python 3.13
+
+# configuration and data
+pyyaml>=6.0
+# hydra-core>=1.3.0     # может иметь проблемы с Python 3.13
+# omegaconf>=2.3.0      # может иметь проблемы с Python 3.13
+
+# training and metrics - минимальный набор
+# timm>=0.6.0           # может иметь проблемы с Python 3.13
+# torchmetrics>=0.11.0  # может иметь проблемы с Python 3.13
+# pytorch-lightning>=1.9.0  # может иметь проблемы с Python 3.13
+# wandb>=0.13.0         # может иметь проблемы с Python 3.13
+tensorboard>=2.13.0     # базовое логирование
+
+# model export / inference
+# onnx>=1.12.0          # может иметь проблемы с Python 3.13
+# onnxruntime>=1.13.0   # может иметь проблемы с Python 3.13
+# openvino>=2022.3.0    # может иметь проблемы с Python 3.13
+
+# dev / infra
+fastapi>=0.104.0        # обновлена для Python 3.13
+uvicorn>=0.24.0         # обновлена версия
+requests>=2.31.0        # обновлена версия
+tqdm>=4.66.0            # обновлена версия
+
+# visualization and analysis
+matplotlib>=3.7.0       # обновлена для Python 3.13
+seaborn>=0.13.0         # обновлена версия
+# plotly>=5.11.0        # может иметь проблемы с Python 3.13
+# ipywidgets>=8.0.0     # может иметь проблемы с Python 3.13
+
+# image processing additional
+imageio>=2.31.0         # обновлена версия
+# kornia>=0.6.0         # может иметь проблемы с Python 3.13
+
+# logging and monitoring
+# loguru>=0.6.0         # может иметь проблемы с Python 3.13
+# rich>=12.0.0          # может иметь проблемы с Python 3.13
+
+# testing
+pytest>=7.4.0          # обновлена для Python 3.13
+pytest-cov>=4.1.0      # обновлена версия
+
+# linting and formatting
+# black>=22.0.0         # может иметь проблемы с Python 3.13
+# isort>=5.11.0         # может иметь проблемы с Python 3.13
+# flake8>=5.0.0         # может иметь проблемы с Python 3.13
+
+# jupyter and development
+jupyter>=1.0.0
+# jupyterlab>=3.5.0     # может иметь проблемы с Python 3.13
+ipykernel>=6.25.0       # обновлена версия
+
+# optional: for advanced features
+# transformers>=4.24.0  # может иметь проблемы с Python 3.13
+# timeseries>=0.2.0     # может иметь проблемы с Python 3.13
+# gradio>=3.13.0        # может иметь проблемы с Python 3.13

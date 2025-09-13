@@ -1,0 +1,44 @@
+# Dockerfile для обучения моделей (с GPU поддержкой)
+FROM pytorch/pytorch:1.13.0-cuda11.6-cudnn8-devel
+
+# Устанавливаем системные зависимости
+RUN apt-get update && apt-get install -y \
+    git \
+    wget \
+    curl \
+    unzip \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgomp1 \
+    libgtk-3-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# Устанавливаем Python зависимости
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем исходный код
+COPY . .
+
+# Устанавливаем проект в development режиме
+RUN pip install -e .
+
+# Создаем необходимые директории
+RUN mkdir -p data/raw data/curated data/annotations data/splits experiments
+
+# Устанавливаем переменные окружения
+ENV PYTHONPATH=/app
+ENV CUDA_VISIBLE_DEVICES=0
+
+# Рабочая директория
+WORKDIR /app
+
+# Команда по умолчанию
+CMD ["python", "src/trainers/trainer_classification.py", "--config", "src/config/default.yaml"]

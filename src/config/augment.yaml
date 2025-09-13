@@ -1,0 +1,61 @@
+# Конфигурация аугментаций для борьбы с тенями и бликами
+
+augmentation:
+  # Базовые геометрические
+  horizontal_flip: 0.5
+  vertical_flip: 0.1
+  rotation: 10
+  scale: [0.9, 1.1]
+  translate: 0.1
+  
+  # Цветовые (критичны для теней)
+  brightness: 0.3
+  contrast: 0.3
+  saturation: 0.2
+  hue: 0.05
+  gamma: [0.8, 1.2]
+  
+  # Специальные для автомобильной съемки
+  clahe:
+    enabled: true
+    clip_limit: 2.0
+    
+  random_shadow:
+    probability: 0.4
+    shadow_roi: [0.1, 0.1, 0.9, 0.9]  # область для наложения тени
+    shadow_intensity: [0.3, 0.7]
+    
+  random_sun_flare:
+    probability: 0.2
+    flare_roi: [0.0, 0.0, 1.0, 0.5]  # верхняя часть изображения
+    
+  gaussian_blur:
+    probability: 0.3
+    blur_limit: [3, 7]
+    
+  motion_blur:
+    probability: 0.2
+    blur_limit: 7
+    
+  # Шум (реалистичный для камер)
+  gaussian_noise:
+    probability: 0.3
+    var_limit: [10, 50]
+    
+  iso_noise:
+    probability: 0.2
+    intensity: [0.1, 0.5]
+    
+  # Искажения линз
+  optical_distortion:
+    probability: 0.2
+    distort_limit: 0.1
+    
+  # Погодные условия
+  random_rain:
+    probability: 0.1
+    rain_type: "drizzle"
+    
+  random_fog:
+    probability: 0.1
+    fog_coeff: [0.1, 0.3]

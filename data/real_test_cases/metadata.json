@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created_date": "2025-09-13",
+    "description": "Real test cases for AIinDrive vehicle damage detection system",
+    "total_images": 7,
+    "categories": [
+      {
+        "name": "production",
+        "description": "Real production cases from operational system",
+        "count": 4,
+        "damage_distribution": {
+          "no_damage": 1,
+          "rust": 1,
+          "dent": 1,
+          "severe": 1
+        }
+      },
+      {
+        "name": "validation", 
+        "description": "Validation cases for model testing",
+        "count": 3,
+        "damage_distribution": {
+          "no_damage": 1,
+          "rust": 1,
+          "scratch": 1
+        }
+      }
+    ]
+  },
+  "image_details": [
+    {
+      "filename": "prod_case_001_no_damage.jpg",
+      "category": "production",
+      "expected_damage_level": 0,
+      "expected_damage_types": [],
+      "description": "Clean car without visible damage",
+      "source": "generated_demo"
+    },
+    {
+      "filename": "prod_case_002_rust.jpg",
+      "category": "production", 
+      "expected_damage_level": 2,
+      "expected_damage_types": ["rust"],
+      "description": "Car with rust spots on body",
+      "source": "generated_demo"
+    },
+    {
+      "filename": "prod_case_003_dent.jpg",
+      "category": "production",
+      "expected_damage_level": 2,
+      "expected_damage_types": ["dent"],
+      "description": "Car with visible dent on side panel",
+      "source": "generated_demo"
+    },
+    {
+      "filename": "prod_case_004_severe.jpg",
+      "category": "production",
+      "expected_damage_level": 3,
+      "expected_damage_types": ["severe_damage"],
+      "description": "Car with severe damage and missing parts",
+      "source": "generated_demo"
+    },
+    {
+      "filename": "val_case_001_scratch.jpg",
+      "category": "validation",
+      "expected_damage_level": 1,
+      "expected_damage_types": ["scratch"],
+      "description": "Car with minor scratches",
+      "source": "generated_demo"
+    },
+    {
+      "filename": "val_case_002_rust.jpg", 
+      "category": "validation",
+      "expected_damage_level": 2,
+      "expected_damage_types": ["rust"],
+      "description": "Car with rust corrosion",
+      "source": "generated_demo"
+    },
+    {
+      "filename": "val_case_003_no_damage.jpg",
+      "category": "validation",
+      "expected_damage_level": 0,
+      "expected_damage_types": [],
+      "description": "Clean car for validation",
+      "source": "generated_demo"
+    }
+  ],
+  "usage_instructions": {
+    "testing": "python scripts/test_real_cases.py --input {production|validation|all}",
+    "analysis": "python scripts/analyze_real_results.py",
+    "gt_comparison": "python scripts/compare_with_gt.py",
+    "custom_folder": "python scripts/test_real_cases.py --custom-input /path/to/images"
+  },
+  "ground_truth_format": {
+    "description": "Expected format for Ground Truth annotations",
+    "example": {
+      "image_name": "example.jpg",
+      "damage_level": 2,
+      "damage_types": ["rust", "dent"],
+      "bboxes": [
+        {
+          "bbox": [100, 150, 200, 250],
+          "class": "rust",
+          "confidence": 1.0
+        }
+      ]
+    }
+  }
+}

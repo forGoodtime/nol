@@ -1,0 +1,19 @@
+{
+  "model": "yolov8n-cls.pt",
+  "dataset": "real_datasets_unified",
+  "training_args": {
+    "data": "/Users/bekzat/projects/AIinDrive/real_datasets/unified",
+    "epochs": 15,
+    "imgsz": 224,
+    "batch": 8,
+    "device": "cpu",
+    "patience": 20,
+    "save_period": 10,
+    "project": "/Users/bekzat/projects/AIinDrive/results/real_training",
+    "name": "real_dataset_20250913_172353",
+    "verbose": true,
+    "plots": true
+  },
+  "results": "ultralytics.utils.metrics.ClassifyMetrics object with attributes:\n\nconfusion_matrix: <ultralytics.utils.metrics.ConfusionMatrix object at 0x16690eed0>\ncurves: []\ncurves_results: []\nfitness: 0.7113402038812637\nkeys: ['metrics/accuracy_top1', 'metrics/accuracy_top5']\nresults_dict: {'metrics/accuracy_top1': 0.42268040776252747, 'metrics/accuracy_top5': 1.0, 'fitness': 0.7113402038812637}\nsave_dir: PosixPath('/Users/bekzat/projects/AIinDrive/results/real_training/real_dataset_20250913_172353')\nspeed: {'preprocess': 0.0013625462294661816, 'inference': 20.255916670310434, 'loss': 7.304116320249039e-05, 'postprocess': 0.00023796851986769546}\ntask: 'classify'\ntop1: 0.42268040776252747\ntop5: 1.0",
+  "timestamp": "2025-09-13T17:39:49.849723"
+}

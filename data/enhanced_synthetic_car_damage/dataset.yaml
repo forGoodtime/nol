@@ -1,0 +1,11 @@
+names:
+  0: no_damage
+  1: rust
+  2: dent
+  3: scratch
+  4: severe_damage
+  5: missing_part
+nc: 6
+path: /Users/bekzat/projects/AIinDrive/data/enhanced_synthetic_car_damage
+train: images/train
+val: images/val
